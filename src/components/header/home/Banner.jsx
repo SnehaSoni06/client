@@ -21,13 +21,18 @@ const responsive = {
 const Banner=()=>{
     return (
         
-            <Carousel responsive={responsive}>  {/*responsivee passed as prop*/}
-              {
-                 bannerData.map(data =>(
-                    <img src={data.url} alt="banner"/>
-                 ))
-              }
-            </Carousel>
+        <Carousel responsive={responsive}>
+        {
+          bannerData.map((data, index) => (
+            <img 
+              key={index}
+              src={data.url} 
+              alt="banner" 
+              aria-label={data.ariaLabel || `banner ${index + 1}`}
+            />
+          ))
+        }
+      </Carousel>
 
         
     )
