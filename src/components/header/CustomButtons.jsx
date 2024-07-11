@@ -1,6 +1,8 @@
+import {useState} from 'react';
+
 import {Box, Button, Typography,styled} from '@mui/material';
 import {ShoppingCart} from '@mui/icons-material';
-
+ import LoginDialog from '../login/LoginDialog';
 
 const Wrapper= styled(Box)`
  display:flex;
@@ -25,14 +27,23 @@ const LoginButton= styled(Button)`
     height: 32;
     box-shadow: none;
 }
-`
+` 
+
+
 
 
 
 const CustomButtons =()=>{
+
+    const [open,setOpen]= useState(false);  //value of open is initially false which will change to true on click
+
+    const openDialog= ()=>{
+      setOpen(true);
+    }
+
     return(
         <Wrapper>
-           <LoginButton variant="contained">Login</LoginButton>
+           <LoginButton variant="contained" onClick={() => openDialog()}>Login</LoginButton>  {/*agar js hota toh onclick hota (c small)*/}
 
            <Typography style={{ marginTop: 3, width: 135 }}> Become a Seller</Typography>
            <Typography style={{ marginTop: 3 }}>More</Typography>
@@ -40,7 +51,7 @@ const CustomButtons =()=>{
             <ShoppingCart/>
             <Typography>Cart</Typography>
            </Container>
-
+             <LoginDialog open={open} setOpen={setOpen}/>  {/*open and setOpen is paseed as prop*/}
         </Wrapper>
 
 

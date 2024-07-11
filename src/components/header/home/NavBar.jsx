@@ -1,5 +1,5 @@
 
-import { navData } from '../../../constants/data';   //NavBar.jsx is located in client/src/components/header/home.data.js is located in client/src/constants
+import { navData } from '../../../constants/data';   //NavBar.jsx is located in client/src/components/header/home data.js is located in client/src/constants
 
 import {Box,styled,Typography} from '@mui/material';  //typography sets margin padding to 0
 
