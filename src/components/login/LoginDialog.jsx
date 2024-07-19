@@ -1,8 +1,9 @@
 
-import {useState} from 'react';
+import {useState,useContext} from 'react';
 import {Dialog,Box,TextField,Typography,Button,styled} from '@mui/material';
 
 import { authenticateSignup } from '../../service/api';
+import {DataContext} from '../../context/DataProvider';
 
 const Component = styled(Box)`
     height: 70vh;
@@ -91,6 +92,8 @@ const LoginDialog=({open,setOpen})=>{
     const [account,toggleAccount]= useState(accountInitialValues.login);          //initially login rahega
     const [signup,  setSignup]=useState(signupInitialValues);
 
+    const {setAccount}=useContext(DataContext);  //data context mein se value nikalega
+
     const handleClose=()=>{
         setOpen(false);
         toggleAccount(accountInitialValues.login); 
@@ -104,8 +107,9 @@ const LoginDialog=({open,setOpen})=>{
     const signupUser=async ()=>{
        let response= await authenticateSignup(signup);  //signup ke andar sara data hai & yaha se jo data return hoga woh response mein save hoga
        if(!response) return;
+       setAccount(signup.firstname); 
        handleClose();
-       
+             
     }
 
     return(

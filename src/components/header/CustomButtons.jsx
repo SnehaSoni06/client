@@ -1,8 +1,10 @@
-import {useState} from 'react';
+import {useState,useContext} from 'react';
 
 import {Box, Button, Typography,styled} from '@mui/material';
 import {ShoppingCart} from '@mui/icons-material';
  import LoginDialog from '../login/LoginDialog';
+
+ import {DataContext} from '../../context/DataProvider';
 
 const Wrapper= styled(Box)`
  display:flex;
@@ -29,13 +31,11 @@ const LoginButton= styled(Button)`
 }
 ` 
 
-
-
-
-
 const CustomButtons =()=>{
 
     const [open,setOpen]= useState(false);  //value of open is initially false which will change to true on click
+    
+    const {account}= useContext(DataContext);
 
     const openDialog= ()=>{
       setOpen(true);
@@ -43,7 +43,12 @@ const CustomButtons =()=>{
 
     return(
         <Wrapper>
-           <LoginButton variant="contained" onClick={() => openDialog()}>Login</LoginButton>  {/*agar js hota toh onclick hota (c small)*/}
+           {
+            account ? <Typography>{account}</Typography>:
+            <LoginButton variant="contained" onClick={() => openDialog()}>Login</LoginButton>
+                
+         }
+              
 
            <Typography style={{ marginTop: 3, width: 135 }}> Become a Seller</Typography>
            <Typography style={{ marginTop: 3 }}>More</Typography>
