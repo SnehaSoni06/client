@@ -3,6 +3,7 @@ import {useState,useContext} from 'react';
 import {Box, Button, Typography,styled} from '@mui/material';
 import {ShoppingCart} from '@mui/icons-material';
  import LoginDialog from '../login/LoginDialog';
+ import Profile from './profile';
 
  import {DataContext} from '../../context/DataProvider';
 
@@ -35,7 +36,7 @@ const CustomButtons =()=>{
 
     const [open,setOpen]= useState(false);  //value of open is initially false which will change to true on click
     
-    const {account}= useContext(DataContext);
+    const {account, setAccount}= useContext(DataContext);
 
     const openDialog= ()=>{
       setOpen(true);
@@ -44,7 +45,7 @@ const CustomButtons =()=>{
     return(
         <Wrapper>
            {
-            account ? <Typography>{account}</Typography>:
+            account ?<Profile account={account} setAccount={setAccount}/>:
             <LoginButton variant="contained" onClick={() => openDialog()}>Login</LoginButton>
                 
          }
